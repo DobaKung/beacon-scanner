@@ -39,6 +39,12 @@ class ScannerActivity : AppCompatActivity(), BeaconConsumer {
         // Android M Permission check
         requestPerm()
 
+        initBeaconManager()
+
+        text_distance.text = "scanning"
+    }
+
+    private fun initBeaconManager() {
         beaconManager = BeaconManager.getInstanceForApplication(this)
         beaconManager.beaconParsers
             .add(
@@ -47,8 +53,6 @@ class ScannerActivity : AppCompatActivity(), BeaconConsumer {
             )
         beaconManager.backgroundScanPeriod = SCAN_PERIOD
         beaconManager.bind(this)
-
-        text_distance.text = "scanning"
     }
 
     private fun requestPerm() {
